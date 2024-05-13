@@ -1,0 +1,10 @@
+//first migration-> add file schema up&down
+migrate create -ext sql -dir db/migration -seq init_schema
+
+//to connect with postgres cli in docker 
+1. docker exec -it postgres /bin/sh
+2. createdb --username=root --owner=root bank_golang                   
+3. psql bank_golang
+
+//migration
+migrate -path db/migration -database "postgresql://root:root@localhost:5432/bank_golang?sslmode=disable" -verbose up
